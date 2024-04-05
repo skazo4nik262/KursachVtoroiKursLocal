@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Mvvm\Model\" />
+    <PackageReference Include="MySqlConnector" Version="2.3.6" />
   </ItemGroup>
 
 </Project>

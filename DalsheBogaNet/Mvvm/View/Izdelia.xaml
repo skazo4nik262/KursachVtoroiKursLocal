@@ -6,7 +6,22 @@
         xmlns:local="clr-namespace:DalsheBogaNet.Mvvm.View"
         mc:Ignorable="d"
         Title="Izdelia" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+    <Viewbox>
+        <StackPanel>
+        <Label Content="Название"/>
+        <TextBox/>
+        <Label Content="Описание"/>
+        <TextBox MaxWidth="200" TextWrapping="Wrap"/>
+        <Label Content="Цена"/>
+        <TextBox/>
+        <Label Content="Количество"/>
+        <TextBox/>
+        <Label Content="Размер"/>
+        <TextBox/>
+        <Label Content="Поставщик"/>
+        <TextBox/>
+        <Label Content="Хрупкость"/>
+        <RadioButton/>
+        </StackPanel>
+    </Viewbox>
 </Window>
