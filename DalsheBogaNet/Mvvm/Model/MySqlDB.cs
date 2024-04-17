@@ -17,7 +17,7 @@ namespace DalsheBogaNet.Mvvm.Model
             MySqlConnectionStringBuilder stringBuilder = new();
             stringBuilder.UserID = "student";
             stringBuilder.Password = "student";
-            stringBuilder.Database = "drinks_1125";
+            stringBuilder.Database = "autoIzdelia";
             stringBuilder.Server = "192.168.200.13";
             stringBuilder.CharacterSet = "utf8mb4";
             //MySqlConnection = new MySqlConnection("server=192.168.200.13;user=student;password=student;database=drinks_1125;Character Set=utf8mb4");
@@ -90,28 +90,5 @@ namespace DalsheBogaNet.Mvvm.Model
                 return -1;
             }
         }
-
-        //public void Test()
-        //{
-        //    try
-        //    { 
-        //        // безопасное выполнение кода, 
-        //        // если произойдет ошибка, она будет перехвачена и выполнится блок catch
-        //        mySqlConnection.Open();
-        //        string str = "С'ироп";
-        //        string sql = "INSERT INTO TagsTable VALUES (0, @tag)";
-        //        using (MySqlCommand cmd = new MySqlCommand(sql, mySqlConnection))
-        //        {
-        //            cmd.Parameters.Add(new MySqlParameter("tag", str));
-        //            cmd.ExecuteNonQuery();
-        //        }
-
-        //        mySqlConnection.Close();
-        //    }
-        //    catch (Exception ex) 
-        //    {
-        //        MessageBox.Show(ex.Message);
-        //    }
-        //}
     }
 }

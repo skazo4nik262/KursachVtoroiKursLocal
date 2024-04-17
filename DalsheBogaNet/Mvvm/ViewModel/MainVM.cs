@@ -22,7 +22,20 @@ namespace DalsheBogaNet.Mvvm.ViewModel
                 Signal();
             }
         }
+        public VmCommand Search {  get; set; }
 
+        public MainVM()
+        {
+            Search = new VmCommand(() =>
+            {
+                OpenSearch();
+            });
+            OpenSearch();
+        }
 
+        private void OpenSearch()
+        {
+            CurrentPage = new ListProducts(this);
+        }
     }
 }

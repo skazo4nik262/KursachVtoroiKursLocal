@@ -4,24 +4,22 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DalsheBogaNet.Mvvm.View"
+        xmlns:vm="clr-namespace:DalsheBogaNet.Mvvm.ViewModel"
+        xmlns:converter="clr-namespace:DalsheBogaNet.Converters"
+        WindowState="Maximized"
         mc:Ignorable="d"
+        DataContext="{DynamicResource mainVM}"
+        x:Name="win"
         Title="Izdelia" Height="450" Width="800">
-    <Viewbox>
-        <StackPanel>
-        <Label Content="Название"/>
-        <TextBox/>
-        <Label Content="Описание"/>
-        <TextBox MaxWidth="200" TextWrapping="Wrap"/>
-        <Label Content="Цена"/>
-        <TextBox/>
-        <Label Content="Количество"/>
-        <TextBox/>
-        <Label Content="Размер"/>
-        <TextBox/>
-        <Label Content="Поставщик"/>
-        <TextBox/>
-        <Label Content="Хрупкость"/>
-        <RadioButton/>
-        </StackPanel>
-    </Viewbox>
+    <Window.Resources>
+        <vm:MainVM x:Key="mainVM"/>
+        <converter:ScaleWidthConverter x:Key="converter1"/>
+        <converter:ScaleHeightConverter x:Key="converter2"/>
+    </Window.Resources>
+    <Grid>
+        <Grid.RenderTransform>
+            <ScaleTransform ScaleX="{Binding ElementName=win, Path=Height, Converter={StaticResource converter1}}" ScaleY="{Binding  ElementName=win, Path=Width, Converter={StaticResource converter2}}" />
+        </Grid.RenderTransform>
+        <Frame NavigationUIVisibility="Hidden" Content="{Binding CurrentPage}"/>
+    </Grid>
 </Window>

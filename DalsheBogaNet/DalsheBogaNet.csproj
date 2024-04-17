@@ -9,7 +9,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Login_icon.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MySqlConnector" Version="2.3.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Login_icon.jpg" />
   </ItemGroup>
 
 </Project>

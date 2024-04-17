@@ -5,19 +5,31 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DalsheBogaNet"
         xmlns:vm="clr-namespace:DalsheBogaNet.Mvvm.ViewModel"
+        WindowState="Maximized"
+        Icon="/Login_icon.jpg"
         mc:Ignorable="d"
         DataContext="{DynamicResource mainVW}"
-        Title="MainWindow" Height="450" Width="800">
+        Title="login" Height="450" Width="800">
     <Window.Resources>
-        <vm:BaseVM x:Key="mainVM"/>
+        <vm:BaseVM x:Key="MainVM"/>
+        <ControlTemplate x:Key ="ButtonTemp" TargetType="Button">
+            <Border CornerRadius="3" Background="Gray">
+                <ContentPresenter Margin="3" Content="{TemplateBinding Content}" HorizontalAlignment="Center"/>
+            </Border>
+        </ControlTemplate>
     </Window.Resources>
+    <Window.Background >
+        <ImageBrush ImageSource="/Login_icon.jpg" Stretch="Fill"/>
+    </Window.Background>
+    
     <Viewbox>
+        
         <StackPanel HorizontalAlignment="Center"  VerticalAlignment="Center" Margin="100" MaxWidth="250">
             <Label Content="Login"/>
             <TextBox x:Name="tb1" />
             <Label Content="Password"/>
             <TextBox x:Name="tb2"/>
-            <Button Content="Войти" Click="Vhod_click" Margin="0 3"/>
+            <Button Content="Войти" FontSize="7" Width="60" Height="15" Click="Vhod_click" Margin="0 3" Template="{StaticResource ButtonTemp}"/>
         </StackPanel>
     </Viewbox>
 </Window>
