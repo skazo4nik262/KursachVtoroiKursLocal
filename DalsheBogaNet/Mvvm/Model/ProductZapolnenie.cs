@@ -47,10 +47,11 @@ namespace DalsheBogaNet.Mvvm.Model
                         product.ID = id;
                         product.Name = reader.GetString("Name");
                         product.Description = reader.GetString("Description");
-                        product.Price = reader.GetDouble("Price");
-                        product.Amount = reader.GetInt32("Amount");
+                        product.Price = reader.GetDecimal("Price");
                         product.Size = reader.GetDouble("Size");
                         product.Breakable = reader.GetBoolean("Breakable");
+                        product.Postavhik = reader.GetInt32("Postavhik");
+                        product.Amount = reader.GetInt32("Amount");
                     }
 
                 }
@@ -65,15 +66,17 @@ namespace DalsheBogaNet.Mvvm.Model
 
             int id = MySqlDB.Instance.GetAutoID("izdelia");
 
-            string sql = "INSERT INTO izdelia VALUES (0, @Name, @Description, @Price, @Amount, @Size, @Breakable)";
+            string sql = "INSERT INTO izdelia VALUES (0, @Name, @Description, @Price, @Size, @Breakable, @Postavhik, @Amount)";
             using (var mc = new MySqlCommand(sql, connect))
             {
                 mc.Parameters.Add(new MySqlParameter("Name", product.Name));
                 mc.Parameters.Add(new MySqlParameter("Description", product.Description));
                 mc.Parameters.Add(new MySqlParameter("Price", product.Price));
-                mc.Parameters.Add(new MySqlParameter("Amount", product.Amount));
                 mc.Parameters.Add(new MySqlParameter("Size", product.Size));
                 mc.Parameters.Add(new MySqlParameter("Breakable", product.Breakable));
+                mc.Parameters.Add(new MySqlParameter("Postavhik", product.Postavhik));
+                mc.Parameters.Add(new MySqlParameter("Amount", product.Amount));
+                mc.ExecuteNonQuery();
             }
         }
         internal void Remove(Product product)
@@ -91,31 +94,29 @@ namespace DalsheBogaNet.Mvvm.Model
         internal void UpdateProduct(Product product)
         {
             var connect = MySqlDB.Instance.GetConnection();
-            if (connect == null) return;
+            if (connect == null) 
+                return;
 
-            string sql = "DELETE FROM izdelia WHERE Tovar_ID = '" + product.ID + "';";
-            using (var mc = new MySqlCommand(sql, connect))
-                mc.ExecuteNonQuery();
 
-            sql = "";
 
-            sql = "UPDATE izdelia SET Name = @Name, Description = @Description, Price = @Price, Amount = @Amount, Size = @Size, Breakable = @Breakable";
+            string sql = "UPDATE izdelia SET Name = @Name, Description = @Description, Price = @Price, Size = @Size, Breakable = @Breakable, Postavhik = @Postavhik, Amount = @Amount WHERE Tovar_ID = " + product.ID;
             using (var mc = new MySqlCommand(sql, connect))
             {
                 mc.Parameters.Add(new MySqlParameter("Name", product.Name));
                 mc.Parameters.Add(new MySqlParameter("Description", product.Description));
                 mc.Parameters.Add(new MySqlParameter("Price", product.Price));
-                mc.Parameters.Add(new MySqlParameter("Amount", product.Amount));
                 mc.Parameters.Add(new MySqlParameter("Size", product.Size));
                 mc.Parameters.Add(new MySqlParameter("Breakable", product.Breakable));
+                mc.Parameters.Add(new MySqlParameter("Postavhik", product.Postavhik));
+                mc.Parameters.Add(new MySqlParameter("Amount", product.Amount));
                 mc.ExecuteNonQuery();
             }
         }
         internal IEnumerable<Product> Search(string searchText)
         {
-            string sql = "SELECT Tovar_ID, Description, Price, Amount, Size, Breakable, Postavhik FROM izdelia";
+            string sql = "SELECT Tovar_ID, Name, Description, Price, Amount, Size, Breakable, Postavhik FROM izdelia";
             sql += " AND (Name LIKE '%" + searchText + "%'";
-            sql += " OR p.Description LIKE '%" + searchText + "%')";
+            sql += " OR Description LIKE '%" + searchText + "%')";
 
             return GetAllProducts(sql);
         }

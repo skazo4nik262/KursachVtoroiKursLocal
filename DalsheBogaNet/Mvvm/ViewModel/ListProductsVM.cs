@@ -8,6 +8,7 @@ namespace DalsheBogaNet.Mvvm.ViewModel
     public class ListProductsVM : BaseVM
     {
         private MainVM mainVM;
+        private ProductZapolnenie productZapolnenie;
         private string searchText = "";
         private ObservableCollection<Product> products;
 
@@ -38,16 +39,18 @@ namespace DalsheBogaNet.Mvvm.ViewModel
             }
         }
 
+
         public ListProductsVM()
         {
             string sql = "SELECT Tovar_ID, Name, Description, Price, Size, Breakable, Postavhik, Amount FROM izdelia";
 
             Products = new ObservableCollection<Product>(ProductZapolnenie.Instance.GetAllProducts(sql));
 
+
+
             Create = new VmCommand(() =>
             {
                 mainVM.CurrentPage = new EditorProduct(mainVM);
-
             });
 
             Edit = new VmCommand(() =>
@@ -56,7 +59,7 @@ namespace DalsheBogaNet.Mvvm.ViewModel
                     return;
                 else
                 {
-                    mainVM.CurrentPage = new EditorProduct(mainVM);
+                    mainVM.CurrentPage = new EditorProduct(mainVM, SelectedProduct);
                 }
             });
             Delete = new VmCommand(() =>

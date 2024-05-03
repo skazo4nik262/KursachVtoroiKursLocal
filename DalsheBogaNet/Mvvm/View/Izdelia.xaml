@@ -10,7 +10,7 @@
         mc:Ignorable="d"
         DataContext="{DynamicResource mainVM}"
         x:Name="win"
-        Title="Izdelia" Height="450" Width="800">
+        Title="Izdelia" Height="450" Width="800" >
     <Window.Resources>
         <vm:MainVM x:Key="mainVM"/>
         <converter:ScaleWidthConverter x:Key="converter1"/>

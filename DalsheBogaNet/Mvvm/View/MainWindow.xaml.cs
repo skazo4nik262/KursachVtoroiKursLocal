@@ -1,4 +1,5 @@
-﻿using DalsheBogaNet.Mvvm.View;
+﻿using DalsheBogaNet.Mvvm.Model;
+using DalsheBogaNet.Mvvm.View;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -15,6 +16,7 @@ namespace DalsheBogaNet
     // Автоматизация учета изделий на предприятии
     public partial class MainWindow : Window
     {
+        UserZapolnenie userZapolnenie = new UserZapolnenie();
         public MainWindow()
         {
             InitializeComponent();
@@ -22,12 +24,38 @@ namespace DalsheBogaNet
 
         private void Vhod_click(object sender, RoutedEventArgs e)
         {
-            if (tb1.Text == "123" && tb2.Text == "123")
+            string a = tb1.Text;
+            string b = tb2.Password;
             {
-                Izdelia izdelia = new Izdelia();
-                Close();
-                izdelia.Show();
+                userZapolnenie.GetUserData(a, b);
+                if (userZapolnenie.Vhod == true)
+                {
+                    if(userZapolnenie.GetUserData(a, b).Role == "Бухгалтер")
+                    {
+                        Izdelia izdelia = new Izdelia();
+                        Close();
+                        izdelia.Show();
+                    }
+                    else
+                    {
+                        Skaner skaner = new Skaner();
+                        Close();
+                        skaner.Show();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("FFFFFFFFFFFFFFFFFFFFFFFFFFF");
+                }
             }
+
+        }
+
+        private void Regist_Click(object sender, RoutedEventArgs e)
+        {
+            RegistWindow reg = new RegistWindow();
+            Hide();
+            reg.Show();
         }
     }
 }

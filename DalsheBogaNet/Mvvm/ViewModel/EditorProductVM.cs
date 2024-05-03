@@ -1,4 +1,5 @@
 ﻿using DalsheBogaNet.Mvvm.Model;
+using DalsheBogaNet.Mvvm.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,7 @@ namespace DalsheBogaNet.Mvvm.ViewModel
                 product = value;
                 Signal();
             }
+            
         }
         public VmCommand Save {  get; set; }
 
@@ -28,11 +30,15 @@ namespace DalsheBogaNet.Mvvm.ViewModel
             Save = new VmCommand(() =>
             {
                 if (Product.ID == 0)
+                { 
                     ProductZapolnenie.Instance.AddProduct(Product);
+                }
                 else
+                {
                     ProductZapolnenie.Instance.UpdateProduct(Product);
+                }
 
-                mainVM.CurrentPage = new View.ListProducts(mainVM);
+                mainVM.CurrentPage = new ListProducts(mainVM);
             });
         }
 

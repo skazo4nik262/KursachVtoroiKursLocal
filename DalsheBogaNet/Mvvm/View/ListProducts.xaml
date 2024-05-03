@@ -54,9 +54,10 @@
                     <GridViewColumn Header="Название" DisplayMemberBinding="{Binding Name}" />
                     <GridViewColumn Header="Описание" DisplayMemberBinding="{Binding Description}" />
                     <GridViewColumn Header="Цена" DisplayMemberBinding="{Binding Price}"/>
-                    <GridViewColumn Header="Количество" DisplayMemberBinding="{Binding Amount}"/>
                     <GridViewColumn Header="Размер" DisplayMemberBinding="{Binding Size}"/>
                     <GridViewColumn Header="Хрупкость" DisplayMemberBinding="{Binding Breakable}"/>
+                    <GridViewColumn Header="Поставщик" DisplayMemberBinding="{Binding Postavhik}"/>
+                    <GridViewColumn Header="Количество" DisplayMemberBinding="{Binding Amount}"/>
                 </GridView>
             </ListView.View>
         </ListView>
