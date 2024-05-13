@@ -25,6 +25,32 @@ namespace DalsheBogaNet.Mvvm.Model
                 return instance;
             }
         }
+        
+        internal IEnumerable<Zakaz> GetAllZakaz(string sql)
+        {
+            var result = new List<Zakaz>();
+            var connect = MySqlDB.Instance.GetConnection();
+            if (connect == null)
+                return result;
+            using (var mc = new MySqlCommand(sql, connect))
+            using (var reader = mc.ExecuteReader())
+            {
+                Zakaz zakaz = new Zakaz();
+                int id;
+                while (reader.Read())
+                {
+                    id = reader.GetInt32("Zakaz_ID");
+                    if (zakaz.ID != id)
+                    {
+                        zakaz = new Zakaz();
+                        result.Add(zakaz);
+                        zakaz.ID = id;
+                        zakaz.Name = reader.GetString("Tovar_Name");
+                        zakaz.Postav = reader.GetInt32("Postavhik");
+                    }
+                }
+            }
+        }
 
         internal IEnumerable<Product> GetAllProducts(string sql)
         {

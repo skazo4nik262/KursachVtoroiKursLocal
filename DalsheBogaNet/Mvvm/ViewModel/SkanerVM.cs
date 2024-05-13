@@ -41,8 +41,8 @@ namespace DalsheBogaNet.Mvvm.ViewModel
                 else
                     code.Codee += a[rnd.Next(0, 9)];
             }
-            MessageBox.Show($"Данные занесены: \n {code.Codee}");
             code.Codes.Add(code.Codee);
+            MessageBox.Show($"Данные занесены: \n {code.Codee}");
         }
         private void Otskan()
         {

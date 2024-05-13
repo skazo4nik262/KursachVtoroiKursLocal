@@ -22,6 +22,7 @@ namespace DalsheBogaNet.Mvvm.View
         public Skaner()
         {
             InitializeComponent();
+            MessageBox.Show("На данный момент эта функция может работать не правильно, используйте на свой страх и риск");
         }
     }
 }

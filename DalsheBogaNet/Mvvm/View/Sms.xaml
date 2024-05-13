@@ -38,19 +38,14 @@
         <Menu>
             <MenuItem Header="На главную" Command="{Binding Okno}"/>
         </Menu>
-        <StackPanel Orientation="Horizontal" Grid.Row="1">
-            <StackPanel Margin="3">
-                <TextBlock Text="Поиск по наименованию или описанию" />
-                <TextBox Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"/>
-            </StackPanel>
-        </StackPanel>
+        
         <ListView ItemsSource="{Binding Products}"
-          SelectedItem="{Binding SelectedProduct}" Grid.Row="2">
+          SelectedItem="{Binding SelectedProduct}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Сообщение" DisplayMemberBinding="{Binding ID}" Width="250"/>
                     <GridViewColumn Header="Товар" DisplayMemberBinding="{Binding Name}" Width="100"/>
-                    <GridViewColumn Header="Поставщик" DisplayMemberBinding="{Binding Description}" Width="100"/>
+                    <GridViewColumn Header="Поставщик" DisplayMemberBinding="{Binding Postavhik}" Width="100"/>
                 </GridView>
             </ListView.View>
         </ListView>

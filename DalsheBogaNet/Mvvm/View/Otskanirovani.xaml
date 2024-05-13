@@ -11,7 +11,7 @@
     <Window.Resources>
         <vm:Code x:Key="code"/>
     </Window.Resources>
-    <Viewbox VerticalAlignment="Top">
+    <StackPanel VerticalAlignment="Top">
             <ListView ItemsSource="{Binding Code}">
                 <ListView.View>
                     <GridView>
@@ -19,5 +19,5 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-    </Viewbox>
+    </StackPanel>
 </Window>

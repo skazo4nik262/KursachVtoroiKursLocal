@@ -30,11 +30,17 @@ namespace DalsheBogaNet
                 userZapolnenie.GetUserData(a, b);
                 if (userZapolnenie.Vhod == true)
                 {
-                    if(userZapolnenie.GetUserData(a, b).Role == "Бухгалтер")
+                    if (userZapolnenie.GetUserData(a, b).Role == "Бухгалтер")
                     {
                         Izdelia izdelia = new Izdelia();
                         Close();
                         izdelia.Show();
+                    }
+                    else if (userZapolnenie.GetUserData(a, b).Role == "Администратор")
+                    {
+                        RegistWindow regist = new RegistWindow();
+                        Close();
+                        regist.Show();
                     }
                     else
                     {
