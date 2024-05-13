@@ -7,7 +7,6 @@ namespace DalsheBogaNet.Mvvm.ViewModel
 {
     public class ListProductsVM : BaseVM
     {
-        private MainVM mainVM;
         private ProductZapolnenie productZapolnenie;
         private string searchText = "";
         private ObservableCollection<Product> products;
@@ -16,6 +15,7 @@ namespace DalsheBogaNet.Mvvm.ViewModel
         public VmCommand Create { get; set; }
         public VmCommand Edit { get; set; }
         public VmCommand Delete { get; set; }
+        public VmCommand Sms { get; set; }
 
 
         public string SearchText
@@ -50,16 +50,19 @@ namespace DalsheBogaNet.Mvvm.ViewModel
 
             Create = new VmCommand(() =>
             {
-                mainVM.CurrentPage = new EditorProduct(mainVM);
+                MainVM.Instance.CurrentPage = new EditorProduct();
             });
-
+            Sms = new VmCommand(() =>
+            {
+                MainVM.Instance.CurrentPage = new Sms();
+            });
             Edit = new VmCommand(() =>
             {
                 if (SelectedProduct == null)
                     return;
                 else
                 {
-                    mainVM.CurrentPage = new EditorProduct(mainVM, SelectedProduct);
+                    MainVM.Instance.CurrentPage = new EditorProduct( SelectedProduct);
                 }
             });
             Delete = new VmCommand(() =>
@@ -80,9 +83,5 @@ namespace DalsheBogaNet.Mvvm.ViewModel
 
         }
 
-        internal void SetMainVM(MainVM mainVM)
-        {
-            this.mainVM = mainVM;
-        }
     }
 }

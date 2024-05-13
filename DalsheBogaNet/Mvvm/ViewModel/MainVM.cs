@@ -11,6 +11,9 @@ namespace DalsheBogaNet.Mvvm.ViewModel
 {
     public class MainVM : BaseVM
     {
+        static MainVM instance;
+        public static MainVM Instance => instance;
+
         private Page currentPage;
 
         public Page CurrentPage
@@ -26,6 +29,8 @@ namespace DalsheBogaNet.Mvvm.ViewModel
 
         public MainVM()
         {
+            instance = this;
+
             Search = new VmCommand(() =>
             {
                 OpenSearch();
@@ -35,7 +40,7 @@ namespace DalsheBogaNet.Mvvm.ViewModel
 
         private void OpenSearch()
         {
-            CurrentPage = new ListProducts(this);
+            CurrentPage = new ListProducts();
         }
     }
 }

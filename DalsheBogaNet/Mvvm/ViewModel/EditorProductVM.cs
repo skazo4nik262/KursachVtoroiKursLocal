@@ -10,7 +10,6 @@ namespace DalsheBogaNet.Mvvm.ViewModel
 {
     internal class EditorProductVM : BaseVM
     {
-        MainVM mainVM;
         private Product product = new();
 
         public Product Product
@@ -38,13 +37,8 @@ namespace DalsheBogaNet.Mvvm.ViewModel
                     ProductZapolnenie.Instance.UpdateProduct(Product);
                 }
 
-                mainVM.CurrentPage = new ListProducts(mainVM);
+                MainVM.Instance.CurrentPage = new ListProducts();
             });
-        }
-
-        internal void SetMainVM(MainVM mainVM)
-        {
-            this.mainVM = mainVM;
         }
 
         internal void SetEditProduct(Product selectedProduct)

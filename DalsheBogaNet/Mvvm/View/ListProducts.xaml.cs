@@ -21,11 +21,9 @@ namespace DalsheBogaNet.Mvvm.View
     /// </summary>
     public partial class ListProducts : Page
     {
-        public ListProducts(ViewModel.MainVM mainVM)
+        public ListProducts()
         {
             InitializeComponent();
-            var vm = DataContext as ListProductsVM;
-            vm?.SetMainVM(mainVM);
         }
     }
 }

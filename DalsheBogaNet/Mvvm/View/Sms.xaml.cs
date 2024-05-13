@@ -1,5 +1,4 @@
-﻿using DalsheBogaNet.Mvvm.Model;
-using DalsheBogaNet.Mvvm.ViewModel;
+﻿using DalsheBogaNet.Mvvm.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,17 +17,13 @@ using System.Windows.Shapes;
 namespace DalsheBogaNet.Mvvm.View
 {
     /// <summary>
-    /// Логика взаимодействия для EditorProduct.xaml
+    /// Логика взаимодействия для Sms.xaml
     /// </summary>
-    public partial class EditorProduct : Page
+    public partial class Sms : Page
     {
-        public EditorProduct()
+        public Sms()
         {
             InitializeComponent();
-        }
-        public EditorProduct(Product selectedProduct) : this()
-        {
-            ((EditorProductVM)DataContext).SetEditProduct(selectedProduct);
         }
     }
 }

@@ -15,6 +15,7 @@
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
         <Label Content="Отсканируйте штрих-код" BorderThickness="1"/>
         <Button Content="Сканировать" Command="{Binding Scan}"/>
+        <Button Content="Посмотреть отсканированные" Command="{Binding Otskanir}"/>
         </StackPanel>
     </Viewbox>
 </Window>
