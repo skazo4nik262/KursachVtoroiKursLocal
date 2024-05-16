@@ -50,6 +50,7 @@ namespace DalsheBogaNet.Mvvm.Model
                     }
                 }
             }
+            return result;
         }
 
         internal IEnumerable<Product> GetAllProducts(string sql)

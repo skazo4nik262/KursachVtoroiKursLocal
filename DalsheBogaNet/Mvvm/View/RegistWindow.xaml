@@ -7,8 +7,10 @@
         xmlns:vm="clr-namespace:DalsheBogaNet.Mvvm.ViewModel"
         mc:Ignorable="d"
         WindowState="Maximized"
+        DataContext="{DynamicResource RegVM}"
         Title="RegistWindow" Height="450" Width="800" ResizeMode="NoResize">
     <Window.Resources>
+        <vm:RegVM x:Key="RegVM"/>
         <ControlTemplate x:Key ="ButtonTemp" TargetType="Button">
             <Border CornerRadius="3" Background="Gray">
                 <ContentPresenter Margin="3" Content="{TemplateBinding Content}" HorizontalAlignment="Center"/>
@@ -17,14 +19,18 @@
     </Window.Resources>
 
     <Viewbox>
-        <StackPanel HorizontalAlignment="Center"  VerticalAlignment="Center" Margin="100" MaxWidth="250">
+        <StackPanel >
+            <StackPanel HorizontalAlignment="Center"  VerticalAlignment="Center" Margin="100" MaxWidth="250">
+            <Label Content="Регистрация" HorizontalAlignment="Center"/>
             <Label Content="Login"/>
             <TextBox x:Name="tb" />
             <Label Content="Role" />
             <ComboBox x:Name="tb2" ItemsSource="{Binding Roles}" SelectedItem="{Binding SelectedRole}" DisplayMemberPath="Title" />
             <Label Content="Password"/>
             <PasswordBox x:Name="pb" />
-            <Button Content="Зарегистрироваться" FontSize="7" Width="80" Height="15" Margin="0 3" Template="{StaticResource ButtonTemp}" Click="Regist_Click"/>
+                <Button Content="Зарегистрироваться" FontSize="7" Width="80" Height="15" Margin="0 3" Template="{StaticResource ButtonTemp}" Command="{Binding Registr}"/>
+        </StackPanel>
+            <Button Content="Выйти" HorizontalAlignment="Center" Command="{Binding Nazad}"/>
         </StackPanel>
     </Viewbox>
 </Window>

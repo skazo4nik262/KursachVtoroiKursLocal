@@ -1,4 +1,5 @@
 ﻿using DalsheBogaNet.Mvvm.Model;
+using DalsheBogaNet.Mvvm.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -26,24 +27,10 @@ namespace DalsheBogaNet.Mvvm.View
         public RegistWindow()
         {
             InitializeComponent();
-            Roles = new List<Role>( UserZapolnenie.Instance.GetAllRoles());
-            DataContext = this;
+            ((RegVM)DataContext).SetClose(Close);
+            Roles = new List<Role>(UserZapolnenie.Instance.GetAllRoles());
         }
 
-        private void Regist_Click(object sender, RoutedEventArgs e)
-        {
-            if(SelectedRole == null) 
-                return;
-            MainWindow main = new MainWindow();
-
-            var a = tb.Text;
-            var b = pb.Password;
-
-            UserZapolnenie.Instance.Regist(a, b, SelectedRole.ID);
-
-            MessageBox.Show("Вы успешно зарегистрировались");
-            Hide();
-            main.Show();
-        }
+       
     }
 }

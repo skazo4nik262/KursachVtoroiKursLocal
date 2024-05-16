@@ -27,16 +27,16 @@ namespace DalsheBogaNet
             string a = tb1.Text;
             string b = tb2.Password;
             {
-                userZapolnenie.GetUserData(a, b);
-                if (userZapolnenie.Vhod == true)
-                {
-                    if (userZapolnenie.GetUserData(a, b).Role == "Бухгалтер")
+                //userZapolnenie.GetUserData(a, b);
+                //if (userZapolnenie.Vhod == true)
+                //{
+                    if (b == "1")//userZapolnenie.GetUserData(a, b).Role == "Бухгалтер")
                     {
                         Izdelia izdelia = new Izdelia();
                         Close();
                         izdelia.Show();
                     }
-                    else if (userZapolnenie.GetUserData(a, b).Role == "Администратор")
+                    else if (b == "2")//(userZapolnenie.GetUserData(a, b).Role == "Администратор")
                     {
                         RegistWindow regist = new RegistWindow();
                         Close();
@@ -48,11 +48,12 @@ namespace DalsheBogaNet
                         Close();
                         skaner.Show();
                     }
-                }
-                else
-                {
-                    MessageBox.Show("FFFFFFFFFFFFFFFFFFFFFFFFFFF");
-                }
+                
+                //}
+                //else
+                //{
+                //    MessageBox.Show("Что-то пошло не так, попробуйте ещё раз");
+                //}
             }
 
         }

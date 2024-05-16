@@ -13,7 +13,8 @@
     </Window.Resources>
     <Viewbox>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-        <Label Content="Отсканируйте штрих-код" BorderThickness="1"/>
+            <Button HorizontalAlignment="Right" Command="{Binding Nazad}" Content="Выйти" FontSize="3"/>
+        <Label Content="Отсканируйте штрих-код" />
         <Button Content="Сканировать" Command="{Binding Scan}"/>
         <Button Content="Посмотреть отсканированные" Command="{Binding Otskanir}"/>
         </StackPanel>

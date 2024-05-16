@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DalsheBogaNet.Mvvm.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,7 +23,8 @@ namespace DalsheBogaNet.Mvvm.View
         public Skaner()
         {
             InitializeComponent();
-            MessageBox.Show("На данный момент эта функция может работать не правильно, используйте на свой страх и риск");
+            ((SkanerVM)DataContext).SetClose(Close);
+            MessageBox.Show("На данный момент эта функция может работать не правильно");
         }
     }
 }

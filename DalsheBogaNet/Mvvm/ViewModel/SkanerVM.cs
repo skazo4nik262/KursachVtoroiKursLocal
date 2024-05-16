@@ -3,8 +3,10 @@ using DalsheBogaNet.Mvvm.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
+using System.Threading.Channels;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -15,6 +17,8 @@ namespace DalsheBogaNet.Mvvm.ViewModel
         Code code = new Code();
         public VmCommand Otskanir {  get; set; }
         public VmCommand Scan {  get; set; }
+        public VmCommand Nazad { get; set; }
+        Action close;
         public SkanerVM()
         {
             Scan = new VmCommand(() =>
@@ -25,7 +29,19 @@ namespace DalsheBogaNet.Mvvm.ViewModel
             {
                 Otskan();
             });
+            Nazad = new VmCommand(() =>
+            {
+                Home();
+            });
         }
+
+        private void Home()
+        {
+            MainWindow mainWindow = new MainWindow();
+            close?.Invoke();
+            mainWindow.Show();
+        }
+
         private void Scaner()
         {
 
@@ -46,7 +62,12 @@ namespace DalsheBogaNet.Mvvm.ViewModel
         }
         private void Otskan()
         {
-            Otskanirovani.Instance.Show();
+            MessageBox.Show("Данная функция в настоящий момент времени не работает.");
+            //Otskanirovani.Instance.Show();
+        }
+        internal void SetClose(Action close)
+        {
+            this.close = close;
         }
     }
 }

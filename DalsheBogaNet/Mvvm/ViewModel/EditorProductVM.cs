@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace DalsheBogaNet.Mvvm.ViewModel
 {
@@ -20,26 +21,33 @@ namespace DalsheBogaNet.Mvvm.ViewModel
                 product = value;
                 Signal();
             }
-            
+
         }
-        public VmCommand Save {  get; set; }
+        public VmCommand Save { get; set; }
 
         public EditorProductVM()
         {
             Save = new VmCommand(() =>
             {
-                if (Product.ID == 0)
-                { 
-                    ProductZapolnenie.Instance.AddProduct(Product);
+                if (product.Name != null || product.Description != null )
+                {
+
+                    if (Product.ID == 0)
+                    {
+                        ProductZapolnenie.Instance.AddProduct(Product);
+                    }
+                    else
+                    {
+                        ProductZapolnenie.Instance.UpdateProduct(Product);
+                    }
+
+                    MainVM.Instance.CurrentPage = new ListProducts();
                 }
                 else
-                {
-                    ProductZapolnenie.Instance.UpdateProduct(Product);
-                }
-
-                MainVM.Instance.CurrentPage = new ListProducts();
+                    MessageBox.Show("Не все поля заполненны");
             });
         }
+        
 
         internal void SetEditProduct(Product selectedProduct)
         {

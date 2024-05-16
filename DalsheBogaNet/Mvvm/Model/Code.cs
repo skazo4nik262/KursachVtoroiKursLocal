@@ -10,6 +10,6 @@ namespace DalsheBogaNet.Mvvm.Model
     public class Code
     {
         public string Codee { get; set; }
-        public ObservableCollection<string> Codes { get; set;}
+        public ObservableCollection<string> Codes { get; set; } = new();
     }
 }
