@@ -33,14 +33,13 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition />
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Menu>
             <MenuItem Header="На главную" Command="{Binding Okno}"/>
         </Menu>
         
-        <ListView ItemsSource="{Binding Products}"
-          SelectedItem="{Binding SelectedProduct}">
+        <ListView ItemsSource="{Binding Products}" SelectedItem="{Binding SelectedProduct}" Grid.Row="1">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Сообщение" DisplayMemberBinding="{Binding ID}" Width="250"/>
