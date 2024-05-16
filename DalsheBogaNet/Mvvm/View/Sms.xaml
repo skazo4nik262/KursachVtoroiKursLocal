@@ -39,10 +39,10 @@
             <MenuItem Header="На главную" Command="{Binding Okno}"/>
         </Menu>
         
-        <ListView ItemsSource="{Binding Products}" SelectedItem="{Binding SelectedProduct}" Grid.Row="1">
+        <ListView ItemsSource="{Binding Products}" Grid.Row="1">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Сообщение" DisplayMemberBinding="{Binding ID}" Width="250"/>
+                    <GridViewColumn Header="Сообщение" DisplayMemberBinding="{Binding Desc}" Width="250"/>
                     <GridViewColumn Header="Товар" DisplayMemberBinding="{Binding Name}" Width="100"/>
                     <GridViewColumn Header="Поставщик" DisplayMemberBinding="{Binding Postavhik}" Width="100"/>
                 </GridView>

@@ -4,13 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DalsheBogaNet.Mvvm.View"
-        xmlns:vm="clr-namespace:DalsheBogaNet.Mvvm.ViewModel"
         mc:Ignorable="d"
         WindowState="Maximized"
-        DataContext="{DynamicResource RegVM}"
         Title="RegistWindow" Height="450" Width="800" ResizeMode="NoResize">
     <Window.Resources>
-        <vm:RegVM x:Key="RegVM"/>
         <ControlTemplate x:Key ="ButtonTemp" TargetType="Button">
             <Border CornerRadius="3" Background="Gray">
                 <ContentPresenter Margin="3" Content="{TemplateBinding Content}" HorizontalAlignment="Center"/>
@@ -28,9 +25,9 @@
             <ComboBox x:Name="tb2" ItemsSource="{Binding Roles}" SelectedItem="{Binding SelectedRole}" DisplayMemberPath="Title" />
             <Label Content="Password"/>
             <PasswordBox x:Name="pb" />
-                <Button Content="Зарегистрироваться" FontSize="7" Width="80" Height="15" Margin="0 3" Template="{StaticResource ButtonTemp}" Command="{Binding Registr}"/>
+                <Button Content="Зарегистрироваться" FontSize="7" Width="80" Height="15" Margin="0 3" Template="{StaticResource ButtonTemp}" Click="Regist_Click"/>
         </StackPanel>
-            <Button Content="Выйти" HorizontalAlignment="Center" Command="{Binding Nazad}"/>
+            <Button Content="Выйти" HorizontalAlignment="Center" Click="Home_click"/>
         </StackPanel>
     </Viewbox>
 </Window>

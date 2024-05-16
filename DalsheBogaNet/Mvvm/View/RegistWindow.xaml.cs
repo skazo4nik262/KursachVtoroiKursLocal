@@ -27,10 +27,31 @@ namespace DalsheBogaNet.Mvvm.View
         public RegistWindow()
         {
             InitializeComponent();
-            ((RegVM)DataContext).SetClose(Close);
             Roles = new List<Role>(UserZapolnenie.Instance.GetAllRoles());
+            DataContext = this;
         }
 
-       
+        MainWindow main = new MainWindow();
+
+        private void Regist_Click(object sender, RoutedEventArgs e)
+        {
+            if (SelectedRole == null)
+                return;
+
+            var a = tb.Text;
+            var b = pb.Password;
+
+            UserZapolnenie.Instance.Regist(a, b, SelectedRole.ID);
+
+            MessageBox.Show("Вы успешно зарегистрировались");
+            Hide();
+            main.Show();
+        }
+
+        private void Home_click(object sender, RoutedEventArgs e)
+        {
+            Close();
+            main.Show();
+        }
     }
 }

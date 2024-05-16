@@ -125,7 +125,7 @@ namespace DalsheBogaNet.Mvvm.Model
 
         internal void Regist(string login, string password, int role)
         {
-            int id = MySqlDB.Instance.GetAutoID("Usesrs");
+            int id = MySqlDB.Instance.GetAutoID("Users");
             var connect = MySqlDB.Instance.GetConnection();
             if (connect == null)
                 return;
@@ -136,7 +136,7 @@ namespace DalsheBogaNet.Mvvm.Model
                 mc.Parameters.Add(new MySqlParameter("password", GetHash(password)));
                 mc.Parameters.Add(new MySqlParameter("role", role));
                 mc.ExecuteNonQuery();
-                MessageBox.Show(GetHash(password));
+                //MessageBox.Show(GetHash(password));
             }
         }
     }
