@@ -35,17 +35,26 @@ namespace DalsheBogaNet.Mvvm.View
 
         private void Regist_Click(object sender, RoutedEventArgs e)
         {
+            UserZapolnenie userZapolnenie = new UserZapolnenie();
+
             if (SelectedRole == null)
                 return;
-
             var a = tb.Text;
             var b = pb.Password;
+            var logins = userZapolnenie.GetAllLogins();
+            if (logins.Contains(a))
+            {
+                MessageBox.Show("пользователь с таким логином уже существует");
+            }
+            else
+            {
+                UserZapolnenie.Instance.Regist(a, b, SelectedRole.ID);
 
-            UserZapolnenie.Instance.Regist(a, b, SelectedRole.ID);
+                MessageBox.Show("Вы успешно зарегистрировались");
+                Hide();
+                main.Show();
+            }
 
-            MessageBox.Show("Вы успешно зарегистрировались");
-            Hide();
-            main.Show();
         }
 
         private void Home_click(object sender, RoutedEventArgs e)

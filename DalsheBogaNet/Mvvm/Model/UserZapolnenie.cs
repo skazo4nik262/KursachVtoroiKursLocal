@@ -27,6 +27,24 @@ namespace DalsheBogaNet.Mvvm.Model
 
         public bool Vhod { get; set; } = false;
 
+        internal List<string> GetAllLogins()
+        {
+            string sql = "SELECT Login from Users";
+            var result = new List<string>();
+            var connect = MySqlDB.Instance.GetConnection();
+            if (connect == null)
+                return result;
+            using(var mc = new MySqlCommand(sql, connect))
+            using(var reader = mc.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    result.Add(reader.GetString("Login"));
+                }
+            }
+            return result;
+        }
+
         internal User GetUserData(string login, string password)
         {
             password = GetHash(password);
@@ -138,6 +156,7 @@ namespace DalsheBogaNet.Mvvm.Model
                 mc.ExecuteNonQuery();
                 //MessageBox.Show(GetHash(password));
             }
+
         }
     }
 }
