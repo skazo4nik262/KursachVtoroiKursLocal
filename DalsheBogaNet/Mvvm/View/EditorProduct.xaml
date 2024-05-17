@@ -19,13 +19,13 @@
             <Label Content="Описание"/>
             <TextBox Text="{Binding Description}"/>
             <Label Content="Цена"/>
-            <TextBox Text="{Binding Price}"/>
+            <TextBox Text="{Binding Price}" ToolTip="Введите цену изделия числом"/>
             <Label Content="Размер"/>
-            <TextBox Text="{Binding Size}"/>
+            <TextBox Text="{Binding Size}" ToolTip="Введите вес изделия числом, кг"/>
             <Label Content="Хрупкость"/>
             <CheckBox IsChecked="{Binding Breakable}"/>
             <Label Content="Поставщик"/>
-            <TextBox Text="{Binding Postavhik}"/>
+            <TextBox Text="{Binding Postavhik}" ToolTip="Введите id поставщика"/>
             <Label Content="Количество"/>
             <TextBox Text="{Binding Amount}"/>
         </StackPanel>
