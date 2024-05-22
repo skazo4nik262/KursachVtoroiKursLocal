@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Formats.Asn1;
 using System.Linq;
 using System.Text;
@@ -146,7 +147,14 @@ namespace DalsheBogaNet.Mvvm.Model
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message + "\n\n\n" + "Введеного поставщика не существует");
+                if (ex.Message == "Column 'Description' cannot be null")
+                    MessageBox.Show("Column 'Description' не заполнено");
+                else if (ex.Message == "Column 'Name' cannot be null")
+                    MessageBox.Show("Поле 'Name' не заполнено");
+                else if (ex.Message == "Cannot add or update a child row: a foreign key constraint fails (`autoIzdelia`.`izdelia`, CONSTRAINT `FK_izdelia_postavhik_Postavhik_ID` FOREIGN KEY (`Postavhik`) REFERENCES `postavhik` (`Postavhik_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION)")
+                    MessageBox.Show("Введеный поставщик не существует");
+                else
+                    MessageBox.Show("Что-то пошло не так");
             }
         }
         internal void Remove(Product product)
@@ -186,7 +194,14 @@ namespace DalsheBogaNet.Mvvm.Model
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message + "\n\n\n" + "Введеного поставщика не существует");
+                if (ex.Message == "Column 'Description' cannot be null")
+                    MessageBox.Show("Column 'Description' не заполнено");
+                else if (ex.Message == "Column 'Name' cannot be null")
+                    MessageBox.Show("Поле 'Name' не заполнено");
+                else if (ex.Message == "Cannot add or update a child row: a foreign key constraint fails (`autoIzdelia`.`izdelia`, CONSTRAINT `FK_izdelia_postavhik_Postavhik_ID` FOREIGN KEY (`Postavhik`) REFERENCES `postavhik` (`Postavhik_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION)")
+                    MessageBox.Show("Введеный поставщик не существует");
+                else
+                    MessageBox.Show("Что-то пошло не так");
             }
         }
         internal IEnumerable<Product> Search(string searchText)

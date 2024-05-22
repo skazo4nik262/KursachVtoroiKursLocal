@@ -39,7 +39,7 @@
             <MenuItem Header="На главную" Command="{Binding Okno}"/>
         </Menu>
 
-        <ListView ItemsSource="{Binding Products}" SelectedItem="{Binding SelectedZakaz}" Grid.Row="1">
+        <ListView ItemsSource="{Binding Products}"  Grid.Row="1">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="ID" DisplayMemberBinding="{Binding ID}" Width="50"/>
