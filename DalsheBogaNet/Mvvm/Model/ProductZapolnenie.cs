@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Formats.Asn1;
 using System.Linq;
@@ -25,6 +26,25 @@ namespace DalsheBogaNet.Mvvm.Model
                     instance = new ProductZapolnenie();
                 return instance;
             }
+        }
+
+        internal IEnumerable<Code> GetAllCode(string sql)
+        {
+            var result = new List<Code>();
+            var connect = MySqlDB.Instance.GetConnection();
+            if (connect == null)
+                return result;
+            using (var mc = new MySqlCommand(sql, connect))
+            using (var reader = mc.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    Code code = new Code();
+                    result.Add(code);
+                    code.Codee = reader.GetString("Code");
+                }
+            }
+            return result;
         }
         
         internal IEnumerable<Zakaz> GetAllZakaz(string sql)
@@ -86,6 +106,20 @@ namespace DalsheBogaNet.Mvvm.Model
                 }
             }
             return result;
+        }
+        internal void AddCode(Code code)
+        {
+            var connect = MySqlDB.Instance.GetConnection();
+            if (connect == null)
+                return;
+
+
+            string sql = "INSERT INTO Codes VALUES (0, @Name)";
+            using (var mc = new MySqlCommand(sql, connect))
+            {
+                mc.Parameters.Add(new MySqlParameter("Name", code.Codee));
+                mc.ExecuteNonQuery();
+            }
         }
         internal void AddProduct(Product product)
         {
@@ -163,5 +197,6 @@ namespace DalsheBogaNet.Mvvm.Model
 
             return GetAllProducts(sql);
         }
+
     }
 }

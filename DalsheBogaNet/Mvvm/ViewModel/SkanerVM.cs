@@ -18,9 +18,14 @@ namespace DalsheBogaNet.Mvvm.ViewModel
         public VmCommand Otskanir {  get; set; }
         public VmCommand Scan {  get; set; }
         public VmCommand Nazad { get; set; }
+        private ObservableCollection<Code> codees;
         Action close;
         public SkanerVM()
         {
+            string sql = "SELECT Code From Codes";
+
+            Codes = new ObservableCollection<Code>(ProductZapolnenie.Instance.GetAllCode(sql));
+
             Scan = new VmCommand(() =>
             {
                 Scaner();
@@ -33,6 +38,15 @@ namespace DalsheBogaNet.Mvvm.ViewModel
             {
                 Home();
             });
+        }
+        public ObservableCollection<Code> Codes
+        {
+            get => codees;
+            set
+            {
+                codees = value;
+                Signal();
+            }
         }
 
         private void Home()
@@ -57,13 +71,22 @@ namespace DalsheBogaNet.Mvvm.ViewModel
                 else
                     code.Codee += a[rnd.Next(0, 9)];
             }
-            code.Codes.Add(code.Codee);
-            MessageBox.Show($"Данные занесены: \n {code.Codee}");
+            ProductZapolnenie.Instance.AddCode(code);
+            //code.Codes.Add(code.Codee);
+
+            //Codees.Add(code.Codee);
+
+            //foreach (var i in code.Codes)
+            //{
+            //    MessageBox.Show("kjdfhfkjdh" + i);
+            //}
+            //MessageBox.Show($"Данные занесены: \n {code.Codee}");
         }
         private void Otskan()
         {
-            MessageBox.Show("Данная функция в настоящий момент времени не работает.");
-            //Otskanirovani.Instance.Show();
+            //MessageBox.Show("Данная функция в настоящий момент времени не работает.");
+            Otskanirovani otskanirovani = new Otskanirovani();
+            otskanirovani.Show();
         }
         internal void SetClose(Action close)
         {

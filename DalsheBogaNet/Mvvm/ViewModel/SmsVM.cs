@@ -15,6 +15,9 @@ namespace DalsheBogaNet.Mvvm.ViewModel
 
         public VmCommand Okno { get; set; }
 
+
+      
+
         //public Product SelectedProduct { get; set; }
         public ObservableCollection<Zakaz> Products
         {
@@ -32,11 +35,13 @@ namespace DalsheBogaNet.Mvvm.ViewModel
             {
                 MainVM.Instance.CurrentPage = new ListProducts();
             });
+           
 
             string sql = "SELECT * FROM izdelia WHERE Amount <100";
 
             Products = new ObservableCollection<Zakaz>(ProductZapolnenie.Instance.GetAllZakaz(sql));
 
         }
+
     }
 }

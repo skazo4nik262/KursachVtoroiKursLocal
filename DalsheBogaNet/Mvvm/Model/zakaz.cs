@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DalsheBogaNet.Mvvm.Model
 {
-    internal class Zakaz
+    public class Zakaz
     {
         public int ID { get; set; } 
         public string Desc { get; set; } = "Товар заканчивается";

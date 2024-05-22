@@ -4,20 +4,22 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DalsheBogaNet.Mvvm.View"
-        xmlns:vm="clr-namespace:DalsheBogaNet.Mvvm.Model"
+        xmlns:vm="clr-namespace:DalsheBogaNet.Mvvm.ViewModel"
         mc:Ignorable="d"
         DataContext="{DynamicResource code}"
         Title="Otskanirovani" Height="450" Width="800">
     <Window.Resources>
-        <vm:Code x:Key="code"/>
+        <vm:SkanerVM x:Key="code"/>
     </Window.Resources>
     <StackPanel VerticalAlignment="Top">
-            <ListView ItemsSource="{Binding Code}">
+        <ScrollViewer>
+            <ListView ItemsSource="{Binding Codes}" MaxHeight="400" >
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Codes}" />
+                        <GridViewColumn Header="Отсканированые штрих-коды" DisplayMemberBinding="{Binding Codee}" Width="200"/>
                     </GridView>
                 </ListView.View>
             </ListView>
+        </ScrollViewer>
     </StackPanel>
 </Window>
