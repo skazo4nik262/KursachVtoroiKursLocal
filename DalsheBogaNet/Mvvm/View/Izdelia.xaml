@@ -20,6 +20,7 @@
         <Grid.RenderTransform>
             <ScaleTransform ScaleX="{Binding ElementName=win, Path=Height, Converter={StaticResource converter1}}" ScaleY="{Binding  ElementName=win, Path=Width, Converter={StaticResource converter2}}" />
         </Grid.RenderTransform>
-        <Frame NavigationUIVisibility="Hidden" Content="{Binding CurrentPage}"/>
+        <Button Content="Выйти" MaxHeight="20" VerticalAlignment="Top" Click="Nazad_Click"/>
+        <Frame NavigationUIVisibility="Hidden" Content="{Binding CurrentPage}" Margin="0 20 0 0"/>
     </Grid>
 </Window>

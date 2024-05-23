@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DalsheBogaNet.Mvvm.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,14 @@ namespace DalsheBogaNet.Mvvm.View
         public Izdelia()
         {
             InitializeComponent();
+            //((MainVM)DataContext).SetClose(Close);
+        }
+
+        private void Nazad_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow main = new MainWindow();
+            Close();
+            main.Show();
         }
     }
 }

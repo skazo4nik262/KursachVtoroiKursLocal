@@ -46,7 +46,6 @@ namespace DalsheBogaNet.Mvvm.ViewModel
 
             Products = new ObservableCollection<Product>(ProductZapolnenie.Instance.GetAllProducts(sql));
 
-            
 
             Create = new VmCommand(() =>
             {
@@ -82,6 +81,6 @@ namespace DalsheBogaNet.Mvvm.ViewModel
                 ProductZapolnenie.Instance.Search(SearchText));
 
         }
-
+        
     }
 }
