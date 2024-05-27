@@ -15,10 +15,10 @@ namespace DalsheBogaNet.Mvvm.Model
         private MySqlDB()
         {
             MySqlConnectionStringBuilder stringBuilder = new();
-            stringBuilder.UserID = "student";
-            stringBuilder.Password = "student";
-            stringBuilder.Database = "autoIzdelia";
-            stringBuilder.Server = "192.168.200.13";
+            stringBuilder.UserID = "root";
+            stringBuilder.Password = "root";
+            stringBuilder.Database = "autoizdelia";
+            stringBuilder.Server = "127.0.0.1";
             stringBuilder.CharacterSet = "utf8mb4";
             //MySqlConnection = new MySqlConnection("server=192.168.200.13;user=student;password=student;database=drinks_1125;Character Set=utf8mb4");
             mySqlConnection = new MySqlConnection(stringBuilder.ToString());

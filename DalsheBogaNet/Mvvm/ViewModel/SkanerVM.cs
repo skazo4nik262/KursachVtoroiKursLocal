@@ -20,9 +20,22 @@ namespace DalsheBogaNet.Mvvm.ViewModel
         public VmCommand Nazad { get; set; }
         private ObservableCollection<Code> codees;
         Action close;
+
+        private Product product = new();
+
+        public Product Product
+        {
+            get => product;
+            set
+            {
+                product = value;
+                Signal();
+            }
+
+        }
         public SkanerVM()
         {
-            string sql = "SELECT Code From Codes";
+            string sql = "SELECT Code From codes";
 
             Codes = new ObservableCollection<Code>(ProductZapolnenie.Instance.GetAllCode(sql));
 
@@ -72,6 +85,13 @@ namespace DalsheBogaNet.Mvvm.ViewModel
                     code.Codee += a[rnd.Next(0, 9)];
             }
             ProductZapolnenie.Instance.AddCode(code);
+            if (Codes.Count > 500)
+            {
+                Codes.Clear();
+                ProductZapolnenie.Instance.RemoveCodes();
+            }
+            Product.Code = code.Codee;
+            ProductZapolnenie.Instance.AddProduct(Product);
             //code.Codes.Add(code.Codee);
 
             //Codees.Add(code.Codee);

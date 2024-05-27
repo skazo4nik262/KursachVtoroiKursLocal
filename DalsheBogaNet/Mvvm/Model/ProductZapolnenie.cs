@@ -115,7 +115,7 @@ namespace DalsheBogaNet.Mvvm.Model
                 return;
 
 
-            string sql = "INSERT INTO Codes VALUES (0, @Name)";
+            string sql = "INSERT INTO codes VALUES (@Name)";
             using (var mc = new MySqlCommand(sql, connect))
             {
                 mc.Parameters.Add(new MySqlParameter("Name", code.Codee));
@@ -132,7 +132,7 @@ namespace DalsheBogaNet.Mvvm.Model
 
                 int id = MySqlDB.Instance.GetAutoID("izdelia");
 
-                string sql = "INSERT INTO izdelia VALUES (0, @Name, @Description, @Price, @Size, @Breakable, @Postavhik, @Amount)";
+                string sql = "INSERT INTO izdelia VALUES (0, @Name, @Description, @Price, @Size, @Breakable, @Postavhik, @Amount, @Code)";
                 using (var mc = new MySqlCommand(sql, connect))
                 {
                     mc.Parameters.Add(new MySqlParameter("Name", product.Name));
@@ -142,6 +142,7 @@ namespace DalsheBogaNet.Mvvm.Model
                     mc.Parameters.Add(new MySqlParameter("Breakable", product.Breakable));
                     mc.Parameters.Add(new MySqlParameter("Postavhik", product.Postavhik));
                     mc.Parameters.Add(new MySqlParameter("Amount", product.Amount));
+                    mc.Parameters.Add(new MySqlParameter("Code", product.Code));
                     mc.ExecuteNonQuery();
                 }
             }
@@ -168,6 +169,15 @@ namespace DalsheBogaNet.Mvvm.Model
             using (var mc = new MySqlCommand(sql, connect))
                 mc.ExecuteNonQuery();
 
+        }
+        internal void RemoveCodes()
+        {
+            var connect = MySqlDB.Instance.GetConnection();
+            if (connect == null)
+                return;
+            string sql = "DELETE FROM codes";
+            using (var mc = new MySqlCommand(sql, connect))
+                mc.ExecuteNonQuery();
         }
         internal void UpdateProduct(Product product)
         {

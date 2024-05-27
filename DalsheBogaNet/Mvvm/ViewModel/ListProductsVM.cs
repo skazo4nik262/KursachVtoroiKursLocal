@@ -10,6 +10,7 @@ namespace DalsheBogaNet.Mvvm.ViewModel
         private ProductZapolnenie productZapolnenie;
         private string searchText = "";
         private ObservableCollection<Product> products;
+        private ObservableCollection<Product> productsInfo;
 
 
         public VmCommand Create { get; set; }
@@ -38,11 +39,21 @@ namespace DalsheBogaNet.Mvvm.ViewModel
                 Signal();
             }
         }
+        public ObservableCollection<Product> ProductsInfo
+        {
+            get => products;
+            set
+            {
+                products = value;
+                Signal();
+            }
+        }
 
 
         public ListProductsVM()
         {
             string sql = "SELECT Tovar_ID, Name, Description, Price, Size, Breakable, Postavhik, Amount FROM izdelia";
+            //string sql2 = "SELECT i.Tovar_ID, i.Name, i.Price, i.Amount, p.Name, i.Code FROM izdelia_info i, postavhik p WHERE";
 
             Products = new ObservableCollection<Product>(ProductZapolnenie.Instance.GetAllProducts(sql));
 

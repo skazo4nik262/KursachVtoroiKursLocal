@@ -29,7 +29,7 @@ namespace DalsheBogaNet.Mvvm.Model
 
         internal List<string> GetAllLogins()
         {
-            string sql = "SELECT Login from Users";
+            string sql = "SELECT Login from users";
             var result = new List<string>();
             var connect = MySqlDB.Instance.GetConnection();
             if (connect == null)
@@ -48,7 +48,7 @@ namespace DalsheBogaNet.Mvvm.Model
         internal User GetUserData(string login, string password)
         {
             password = GetHash(password);
-            string sql = "SELECT u.User_ID, u.Login, u.Role_ID, r.Role_Name, u.Password FROM Users u, Roles r WHERE u.Login = @login AND u.Password = @password and r.Role_ID = u.Role_ID";
+            string sql = "SELECT u.User_ID, u.Login, u.Role_ID, r.Role_Name, u.Password FROM users u, roles r WHERE u.Login = @login AND u.Password = @password and r.Role_ID = u.Role_ID";
             var result = new User();
             var connect = MySqlDB.Instance.GetConnection();
             if (connect == null)
@@ -92,7 +92,7 @@ namespace DalsheBogaNet.Mvvm.Model
 
         internal IEnumerable<User> GetAllUserData()
         {
-            string sql2 = "SELECT u.User_ID, u.Login, u.Role_ID, r.Role_Name FROM Users u, Roles r where u.Role_ID = r.Role_ID";
+            string sql2 = "SELECT u.User_ID, u.Login, u.Role_ID, r.Role_Name FROM users u, roles r where u.Role_ID = r.Role_ID";
             var result = new List<User>();
             var connect = MySqlDB.Instance.GetConnection();
             if (connect == null)
@@ -121,7 +121,7 @@ namespace DalsheBogaNet.Mvvm.Model
 
         internal IEnumerable<Role> GetAllRoles()
         {
-            string sql2 = "SELECT * FROM Roles r";
+            string sql2 = "SELECT * FROM roles r";
             var result = new List<Role>();
             var connect = MySqlDB.Instance.GetConnection();
             if (connect == null)
@@ -147,7 +147,7 @@ namespace DalsheBogaNet.Mvvm.Model
             var connect = MySqlDB.Instance.GetConnection();
             if (connect == null)
                 return;
-            string sql3 = "INSERT INTO Users VALUES (0, @login, @password, @role)";
+            string sql3 = "INSERT INTO users VALUES (0, @login, @password, @role)";
             using (var mc = new MySqlCommand(sql3, connect))
             {
                 mc.Parameters.Add(new MySqlParameter("login", login));
